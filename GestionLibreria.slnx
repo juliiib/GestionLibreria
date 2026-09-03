@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="GestionLibreria.Application/GestionLibreria.Application.csproj" />
+  <Project Path="GestionLibreria.Domain/GestionLibreria.Domain.csproj" />
+  <Project Path="GestionLibreria.Infrastructure/GestionLibreria.Infrastructure.csproj" />
+  <Project Path="GestionLibreria.Presentation/GestionLibreria.Presentation.csproj" />
+</Solution>
