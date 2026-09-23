@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\GestionLibreria.Domain\GestionLibreria.Domain.csproj" />
+    <ProjectReference Include="..\GestionLibreria.Infrastructure\GestionLibreria.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
