@@ -2,20 +2,30 @@ using GestionLibreria.Domain.Interfaces;
 using GestionLibreria.Infrastructure.Repositories;
 using GestionLibreria.Application.Interfaces;
 using GestionLibreria.Application.Services;
+using GestionLibreria.Infrastructure.Persistence;
+
+using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("GestionLibreriaDb") 
+    ?? throw new InvalidOperationException("Connection string 'GestionLibreriaDb' not found.");
+
+builder.Services.AddDbContext<GestionLibreriaDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// Infrastructure: Repositories.
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
+// Application: Use Cases.
+builder.Services.AddScoped<IClientService, ClientService>();
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IClientRepository, ClientRepository>();
-builder.Services.AddScoped<IClientService, ClientService>();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/opeapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

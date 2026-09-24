@@ -43,7 +43,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Client> GetClientById(int id)
+        public ActionResult<Client> GetClientById(Guid id)
         {
             var client = _clientRepository.GetClientById(id);
             if (client == null)
@@ -54,7 +54,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPatch("{id}")]
-        public ActionResult Update([FromRoute] int id, [FromBody] UpdateClientRequest request)
+        public ActionResult Update([FromRoute] Guid id, [FromBody] UpdateClientRequest request)
         {
             if (!_clientRepository.UpdateClient(id, request))
             {

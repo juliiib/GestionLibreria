@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GestionLibreria.Application.DTOs;
+﻿using GestionLibreria.Application.DTOs;
 using GestionLibreria.Domain.Entities;
 
 namespace GestionLibreria.Application.Interfaces
@@ -12,10 +9,10 @@ namespace GestionLibreria.Application.Interfaces
 
         IReadOnlyList<Client> GetAllClients();
 
-        Client? GetClientById(int id);
+        Client? GetClientById(Guid id);
 
-        bool RemoveClient(int id);
+        void RemoveClient(Guid id);
 
-        bool UpdateClient(int id, UpdateClientRequest request);
+        bool UpdateClient(Guid id, UpdateClientRequest request);
     }
 }

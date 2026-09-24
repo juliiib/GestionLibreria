@@ -6,9 +6,7 @@ namespace GestionLibreria.Domain.Entities
 {
     public abstract class  User
     {
-        private static int NextId = 1;
-
-        public int Id { get; }
+        public Guid Id { get; private set; }
         public String DNI { get; }
         public String Name { get; }
         public string LastName { get; }
@@ -50,7 +48,7 @@ namespace GestionLibreria.Domain.Entities
                 throw new ArgumentException("Phone cannot be null or empty.", nameof(phone));
             }
             
-            Id = NextId++;
+            Id = Guid.NewGuid();
             DNI = dni;
             Name = name;
             LastName = lastName;

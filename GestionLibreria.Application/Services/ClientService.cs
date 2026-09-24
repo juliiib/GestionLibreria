@@ -28,20 +28,20 @@ namespace GestionLibreria.Application.Services
 
         public IReadOnlyList<Client> GetAllClients() => clientRepository.GetAllClients();
 
-        public Client? GetClientById(int id) => clientRepository.GetClientById(id);
+        public Client? GetClientById(Guid id) => clientRepository.GetClientById(id);
 
-        public bool RemoveClient(int id)
+        public void RemoveClient(Guid id)
         {
             var client = clientRepository.GetClientById(id);
             
             if (client == null) {
-                return false;
+                return;
             }
 
-            return clientRepository.RemoveClient(client);
+            clientRepository.RemoveClient(client);
         }
 
-        public bool UpdateClient(int id, UpdateClientRequest request)
+        public bool UpdateClient(Guid id, UpdateClientRequest request)
         {
             var client = clientRepository.GetClientById(id);
 

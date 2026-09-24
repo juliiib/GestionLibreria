@@ -11,9 +11,9 @@ namespace GestionLibreria.Domain.Interfaces
 
         IReadOnlyList<Client> GetAllClients();
 
-        Client? GetClientById(int id);
+        Client? GetClientById(Guid id);
 
-        bool RemoveClient(Client client);
+        void RemoveClient(Client client);
 
         void UpdateClient(Client client);
     }
