@@ -29,5 +29,16 @@ namespace GestionLibreria.Domain.Entities
             HireDate = hireDate;
             Role = role;
         }
+
+        public void UpdateEmployeeDetails(decimal salary, ShiftEnum shift, RoleEnum role)
+        {
+            if (salary < 0)
+            {
+                throw new ArgumentException("Salary cannot be negative.", nameof(salary));
+            }
+            Salary = salary;
+            Shift = shift;
+            Role = role;
+        }
     }
 }

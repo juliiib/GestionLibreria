@@ -1,8 +1,5 @@
 ﻿using GestionLibreria.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace GestionLibreria.Infrastructure.Persistence
 {
@@ -14,6 +11,7 @@ namespace GestionLibreria.Infrastructure.Persistence
         }
 
         public DbSet<Client> Clients => Set<Client>();
+        public DbSet<Employee> Employees => Set<Employee>();
 
     }
 }
