@@ -5,7 +5,7 @@ using GestionLibreria.Application.Services;
 using GestionLibreria.Infrastructure.Persistence;
 
 using Microsoft.EntityFrameworkCore;
-using System.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +17,13 @@ builder.Services.AddDbContext<GestionLibreriaDbContext>(options =>
 
 // Infrastructure: Repositories.
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 // Application: Use Cases.
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();

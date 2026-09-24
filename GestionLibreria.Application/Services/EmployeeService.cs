@@ -8,8 +8,6 @@ using System.Text;
 
 namespace GestionLibreria.Application.Services
 {
-    namespace GestionLibreria.Application.Services
-    {
         public class EmployeeService : IEmployeeService
         {
             private readonly IEmployeeRepository _employeeRepository;
@@ -76,6 +74,5 @@ namespace GestionLibreria.Application.Services
                 return true;
             }
         }
-    }
-
 }
+
