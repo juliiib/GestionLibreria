@@ -13,5 +13,8 @@ namespace GestionLibreria.Infrastructure.Persistence
         public DbSet<Client> Clients => Set<Client>();
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<Order> Orders => Set<Order>();
+
+
     }
 }
