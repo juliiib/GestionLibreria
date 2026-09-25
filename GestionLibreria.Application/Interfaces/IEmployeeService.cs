@@ -8,11 +8,11 @@ namespace GestionLibreria.Application.Interfaces
 {
     public interface IEmployeeService
     {
-        Employee AddEmployee(CreateEmployeeRequest request);
+        EmployeeResponse AddEmployee(CreateEmployeeRequest request);
 
-        IReadOnlyList<Employee> GetAllEmployees();
+        IReadOnlyList<EmployeeResponse> GetAllEmployees();
 
-        Employee? GetEmployeeById(Guid id);
+        EmployeeResponse? GetEmployeeById(Guid id);
 
         void RemoveEmployee(Guid id);
 

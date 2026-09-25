@@ -5,9 +5,9 @@ namespace GestionLibreria.Application.Interfaces
 {
     public interface IProductService
     {
-        Product AddProduct(CreateProductRequest request);
-        IReadOnlyList<Product> GetAllProducts();
-        Product? GetProductById(Guid id);
+        ProductResponse AddProduct(CreateProductRequest request);
+        IReadOnlyList<ProductResponse> GetAllProducts();
+        ProductResponse? GetProductById(Guid id);
         void RemoveProduct(Guid id);
         bool UpdateProductDetails(Guid id, UpdateProductRequest request);
         bool SetProductAvailability(Guid id, SetAvailabilityRequest request);

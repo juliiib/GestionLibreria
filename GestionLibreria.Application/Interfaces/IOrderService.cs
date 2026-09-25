@@ -5,9 +5,9 @@ namespace GestionLibreria.Application.Interfaces
 {
     public interface IOrderService
     {
-        Order? CreateOrder(CreateOrderRequest request);
-        IReadOnlyList<Order> GetAllOrders();
-        Order? GetOrderById(Guid id);
+        OrderResponse? CreateOrder(CreateOrderRequest request);
+        IReadOnlyList<OrderResponse> GetAllOrders();
+        OrderResponse? GetOrderById(Guid id);
         bool MarkOrderAsCompleted(Guid id);
         bool MarkOrderAsCancelled(Guid id);
     }

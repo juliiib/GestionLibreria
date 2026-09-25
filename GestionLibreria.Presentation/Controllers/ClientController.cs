@@ -21,7 +21,7 @@ namespace GestionLibreria.Presentation.Controllers
         {
             try
             {
-                Client client = _clientRepository.AddClient(request);
+                ClientResponse client = _clientRepository.AddClient(request);
 
                 return CreatedAtAction(nameof(GetClientById), new { id = client.Id }, client);
             }
@@ -32,7 +32,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyList<Client>> GetAll()
+        public ActionResult<IReadOnlyList<ClientResponse>> GetAll()
         {
             var clients = _clientRepository.GetAllClients();
             if (!clients.Any())
@@ -43,7 +43,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Client> GetClientById(Guid id)
+        public ActionResult<ClientResponse> GetClientById(Guid id)
         {
             var client = _clientRepository.GetClientById(id);
             if (client == null)

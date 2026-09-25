@@ -14,7 +14,7 @@ namespace GestionLibreria.Application.Services
             this._orderRepository = orderRepository;
         }
 
-        public Order? CreateOrder(CreateOrderRequest request)
+        public OrderResponse? CreateOrder(CreateOrderRequest request)
         {
             
             var order = new Order(request.ClientId, request.EmployeeId);
@@ -26,17 +26,19 @@ namespace GestionLibreria.Application.Services
 
             _orderRepository.AddOrder(order);
             
-            return order;
+            return OrderResponse.FromOrder(order);
         }
 
-        public IReadOnlyList<Order> GetAllOrders()
+        public IReadOnlyList<OrderResponse> GetAllOrders()
         {
-            return _orderRepository.GetAllOrders();
+            var orders = _orderRepository.GetAllOrders();
+            return orders.Select(OrderResponse.FromOrder).ToList();
         }
 
-        public Order? GetOrderById(Guid id)
+        public OrderResponse? GetOrderById(Guid id)
         {
-            return _orderRepository.GetOrderById(id);
+            var order = _orderRepository.GetOrderById(id);
+            return order != null ? OrderResponse.FromOrder(order) : null;
         }
 
         public bool MarkOrderAsCompleted(Guid id)

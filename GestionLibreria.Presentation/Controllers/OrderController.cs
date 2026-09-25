@@ -17,11 +17,11 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Order> Create([FromBody] CreateOrderRequest request)
+        public ActionResult<OrderResponse> Create([FromBody] CreateOrderRequest request)
         {
             try
             {
-                Order? order = _orderService.CreateOrder(request);
+                OrderResponse? order = _orderService.CreateOrder(request);
                 if (order == null)
                 {
                     return BadRequest("Failed to create order.");
@@ -46,7 +46,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Order> GetOrderById(Guid id)
+        public ActionResult<OrderResponse> GetOrderById(Guid id)
         {
             var order = _orderService.GetOrderById(id);
             if (order == null)
@@ -57,7 +57,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPatch("{id}/complete")]
-        public ActionResult<Order> CompleteOrder(Guid id)
+        public ActionResult<OrderResponse> CompleteOrder(Guid id)
         {
             if (!_orderService.MarkOrderAsCompleted(id))
             {
@@ -67,7 +67,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPatch("{id}/cancel")]
-        public ActionResult<Order> CancelOrder(Guid id)
+        public ActionResult<OrderResponse> CancelOrder(Guid id)
         {
             if (!_orderService.MarkOrderAsCancelled(id))
             {

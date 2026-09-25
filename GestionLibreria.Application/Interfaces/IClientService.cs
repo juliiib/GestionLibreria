@@ -5,11 +5,11 @@ namespace GestionLibreria.Application.Interfaces
 {
     public interface IClientService
     {
-        Client AddClient(CreateClientRequest request);
+        ClientResponse AddClient(CreateClientRequest request);
 
-        IReadOnlyList<Client> GetAllClients();
+        IReadOnlyList<ClientResponse> GetAllClients();
 
-        Client? GetClientById(Guid id);
+        ClientResponse? GetClientById(Guid id);
 
         void RemoveClient(Guid id);
 

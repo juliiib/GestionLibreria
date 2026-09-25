@@ -17,11 +17,11 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Employee> Create([FromBody] CreateEmployeeRequest request)
+        public ActionResult<EmployeeResponse> Create([FromBody] CreateEmployeeRequest request)
         {
             try
             {
-                Employee employee = _employeeRepository.AddEmployee(request);
+                EmployeeResponse employee = _employeeRepository.AddEmployee(request);
                 return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyList<Employee>> GetAll()
+        public ActionResult<IReadOnlyList<EmployeeResponse>> GetAll()
         {
             var employees = _employeeRepository.GetAllEmployees();
             if (!employees.Any())
@@ -42,7 +42,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Employee> GetEmployeeById(Guid id)
+        public ActionResult<EmployeeResponse> GetEmployeeById(Guid id)
         {
             var employee = _employeeRepository.GetEmployeeById(id);
             if (employee == null)

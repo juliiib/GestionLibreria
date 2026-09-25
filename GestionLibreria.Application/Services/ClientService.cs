@@ -17,18 +17,26 @@ namespace GestionLibreria.Application.Services
             this.clientRepository = clientRepository;
         }
 
-        public Client AddClient(CreateClientRequest request)
+        public ClientResponse AddClient(CreateClientRequest request)
         {
             var client = new Client(request.Dni, request.Name, request.LastName, request.Mail, request.PassWordHash, request.Address, request.Phone);
 
             clientRepository.AddClient(client);
 
-            return client;
+            return ClientResponse.FromClient(client);
         }
 
-        public IReadOnlyList<Client> GetAllClients() => clientRepository.GetAllClients();
+        public IReadOnlyList<ClientResponse> GetAllClients()
+        {
+            var clients = clientRepository.GetAllClients();
+            return clients.Select(ClientResponse.FromClient).ToList();
+        }
 
-        public Client? GetClientById(Guid id) => clientRepository.GetClientById(id);
+        public ClientResponse? GetClientById(Guid id)
+        {
+            var client = clientRepository.GetClientById(id);
+            return client != null ? ClientResponse.FromClient(client) : null;
+        }
 
         public void RemoveClient(Guid id)
         {

@@ -17,11 +17,11 @@ namespace GestionLibreria.Presentation.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Product> Create([FromBody] CreateProductRequest request)
+        public ActionResult<ProductResponse> Create([FromBody] CreateProductRequest request)
         {
             try
             {
-                Product product = _productService.AddProduct(request);
+                ProductResponse product = _productService.AddProduct(request);
                 return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace GestionLibreria.Presentation.Controllers
         }
         
         [HttpGet]
-        public ActionResult<IReadOnlyList<Product>> GetAll()
+        public ActionResult<IReadOnlyList<ProductResponse>> GetAll()
         {
             var products = _productService.GetAllProducts();
             if (!products.Any())

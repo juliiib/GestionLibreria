@@ -14,23 +14,24 @@ namespace GestionLibreria.Application.Services
             this._productRepository = productRepository;
         }
 
-        public Product AddProduct(CreateProductRequest request)
+        public ProductResponse AddProduct(CreateProductRequest request)
         {
             var product = new Product(request.InternalCode, request.Title, request.Description, request.IsAvailable, request.Price, request.Location, request.Category);
             
             _productRepository.AddProduct(product);
             
-            return product;
+            return ProductResponse.FromProduct(product);
         }
 
-        public IReadOnlyList<Product> GetAllProducts()
+        public IReadOnlyList<ProductResponse> GetAllProducts()
         {
-            return _productRepository.GetAllProducts();
+            return _productRepository.GetAllProducts().Select(ProductResponse.FromProduct).ToList();
         }
 
-        public Product? GetProductById(Guid id)
+        public ProductResponse? GetProductById(Guid id)
         {
-            return _productRepository.GetProductById(id);
+            var product = _productRepository.GetProductById(id);
+            return product != null ? ProductResponse.FromProduct(product) : null;
         }
 
         public void RemoveProduct(Guid id)

@@ -7,7 +7,7 @@ namespace GestionLibreria.Domain.Entities
     public abstract class  User
     {
         public Guid Id { get; private set; }
-        public String DNI { get; }
+        public String Dni { get; }
         public String Name { get; }
         public string LastName { get; }
         public string Mail { get; private set; }
@@ -49,7 +49,7 @@ namespace GestionLibreria.Domain.Entities
             }
             
             Id = Guid.NewGuid();
-            DNI = dni;
+            Dni = dni;
             Name = name;
             LastName = lastName;
             Mail = mail;

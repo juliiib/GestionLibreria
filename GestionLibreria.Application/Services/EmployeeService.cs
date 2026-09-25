@@ -17,18 +17,26 @@ namespace GestionLibreria.Application.Services
                 this._employeeRepository = employeeRepository;
             }
 
-            public Employee AddEmployee(CreateEmployeeRequest request)
+            public EmployeeResponse AddEmployee(CreateEmployeeRequest request)
             {
                 var employee = new Employee(request.Dni, request.Name, request.LastName, request.Mail, request.PassWordHash, request.Address, request.Phone, request.Salary, request.Shift, request.HireDate, request.Role);
 
                 _employeeRepository.AddEmployee(employee);
 
-                return employee;
+                return EmployeeResponse.FromEmployee(employee);
             }
 
-            public IReadOnlyList<Employee> GetAllEmployees() => _employeeRepository.GetAllEmployees();
+            public IReadOnlyList<EmployeeResponse> GetAllEmployees()
+            {
+                var employees = _employeeRepository.GetAllEmployees();
+                return employees.Select(EmployeeResponse.FromEmployee).ToList();
+            }
 
-            public Employee? GetEmployeeById(Guid id) => _employeeRepository.GetEmployeeById(id);
+            public EmployeeResponse? GetEmployeeById(Guid id)
+            {
+                var employee = _employeeRepository.GetEmployeeById(id);
+                return employee != null ? EmployeeResponse.FromEmployee(employee) : null;
+            }
 
             public void RemoveEmployee(Guid id)
             {
